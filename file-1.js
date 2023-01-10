@@ -4,19 +4,27 @@
 
 // file:///Z:
 
-function main() {
+// function main() {
+// let sitys = ['Москва', 'Красноярск', 'Архангельск', 'Краснодар', 
+// 'Ростов-на-Дону', 'Ульяновск', 'Калининград', 'Дмитров', 
+// 'Владивосток','Краснознаменск', 'Казань', 'Нальчик', 'Кировоград'];
+
+// // sity_user = 
+
+
+// }
+
+// window.onload = main;
+
 let sitys = ['Москва', 'Красноярск', 'Архангельск', 'Краснодар', 
 'Ростов-на-Дону', 'Ульяновск', 'Калининград', 'Дмитров', 
 'Владивосток','Краснознаменск', 'Казань', 'Нальчик', 'Кировоград'];
 
-// sity_user = 
+b1.onclick = function() {
+    console.log(sitys[5]);
+    let val = document.getElementById('a1').value;
+    document.getElementById('s1').innerHTML=val;
+    
+};
 
-console.log(sitys[5]);
-}
-
-window.onload = main;
-
-// b1.onclick = function() {
-//     var val = document.getElementById('a1').value;
-//     document.getElementById('s1').innerHTML=val;
-// };
+// window.onload = main;
