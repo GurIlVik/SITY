@@ -4,17 +4,8 @@
 
 // file:///Z:
 
-// function main() {
-// let sitys = ['Москва', 'Красноярск', 'Архангельск', 'Краснодар', 
-// 'Ростов-на-Дону', 'Ульяновск', 'Калининград', 'Дмитров', 
-// 'Владивосток','Краснознаменск', 'Казань', 'Нальчик', 'Кировоград'];
 
-// // sity_user = 
-// }
-
-// window.onload = main;
-
-let sitys = ['Москва', 'Красноярск', 'Архангельск', 'Краснодар', 
+var sitys = ['Москва', 'Красноярск', 'Архангельск', 'Краснодар', 
 'Ростов-на-Дону', 'Ульяновск', 'Калининград', 'Дмитров', 
 'Владивосток','Краснознаменск', 'Казань', 'Нальчик', 'Кировоград'];
 
@@ -24,8 +15,8 @@ function get_next_city(my_city) {
 	for (var i = 0; i < sitys.length; i++) {
 		if (sitys[i][0].toLowerCase() === my_city[my_city.length - 1]) {
 			let result = sitys[i];
-			sitys = sitys.filter(
-			item => item !== result);
+			sitys = sitys.filter( item => item !== result);
+            console.log(sitys)
 			return result;
 		}
 	}
@@ -35,6 +26,7 @@ function get_next_city(my_city) {
 b1.onclick = function() {
     console.log(sitys[5]);
     var sity_user = document.getElementById('a1').value;
+    // if (sity_user[0] )
     if (sity_comp === '') {
         sity_comp = get_next_city(sity_user)
         document.getElementById('s1').innerHTML = sity_comp;
@@ -50,8 +42,3 @@ b1.onclick = function() {
         document.getElementById('s2').innerHTML += '<br>' + sity_user + " - " +  sity_comp;
         	}}
 };
-
-// function main() {
-//     console.log(sitys[3]);
-// }
-// window.onload = main;
