@@ -49,3 +49,14 @@ footer {
 #s3 {
     font-size: 3vw;
 }
+
+#memory {
+    height: 0px;
+    width: 0px;
+    border: 1px;
+    font-size: 1px;
+}
+
+#mempy {
+    font-size: 1px;
+}

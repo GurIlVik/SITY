@@ -4,7 +4,6 @@
 
 // file:///Z:
 
-
 var sitys = ['Москва', 'Красноярск', 'Архангельск', 'Краснодар', 
 'Ростов-на-Дону', 'Ульяновск', 'Калининград', 'Дмитров', 
 'Владивосток','Краснознаменск', 'Казань', 'Нальчик', 'Кировоград'];
@@ -16,29 +15,54 @@ function get_next_city(my_city) {
 		if (sitys[i][0].toLowerCase() === my_city[my_city.length - 1]) {
 			let result = sitys[i];
 			sitys = sitys.filter( item => item !== result);
-            console.log(sitys)
 			return result;
 		}
 	}
 	return "Ты выиграл!"
 }
 
-b1.onclick = function() {
-    console.log(sitys[5]);
-    var sity_user = document.getElementById('a1').value;
-    // if (sity_user[0] )
-    if (sity_comp === '') {
-        sity_comp = get_next_city(sity_user)
-        document.getElementById('s1').innerHTML = sity_comp;
-        document.getElementById('s3').innerHTML = sity_comp[sity_comp.length -1];
-        document.getElementById('s2').innerHTML += sity_user + " - " +  sity_comp;
-    } else {
-    if (sity_comp[sity_comp.length - 1] !== sity_user[0].toLowerCase() ) {
-        document.getElementById('s2').innerHTML += '<br>' + 'Введите правильно город'
-    } else {
-        sity_comp = get_next_city(sity_user)
-        document.getElementById('s1').innerHTML = sity_comp;
-        document.getElementById('s3').innerHTML = sity_comp[sity_comp.length -1];
-        document.getElementById('s2').innerHTML += '<br>' + sity_user + " - " +  sity_comp;
-        	}}
+function writer (sity_comp, sity_user) {
+    document.getElementById('s1').innerHTML = sity_comp;
+    document.getElementById('s3').innerHTML = sity_comp[sity_comp.length -1];
+    document.getElementById('s2').innerHTML += '<br>' + sity_user + " - " +  sity_comp;
+}
+
+function checkuser (use) {
+    let letters = ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Э', 'Ю', 'Я'];
+    for (let i = 0; i < letters.length; i ++) {
+        console.log(use[0])
+        if (use[0] === letters[i]) {
+            console.log(use[0])
+            return use
+        } 
+       };  return false}
+
+function start (sitys) {
+    b1.onclick = function() {
+        
+            // console.log(sity_comp);
+        var sity_user = document.getElementById('a1').value;
+        sity_user = checkuser(sity_user);
+        if (sity_user === false) {
+            document.getElementById('s2').innerHTML += '<br>' + 'Введите правильно город, первая буква указана не верно:';
+            document.getElementById('a1').innerHTML = '';
+        } else {
+            if (sity_comp === '') {
+                sity_comp = get_next_city(sity_user)
+                writer (sity_comp, sity_user)
+            } else {
+            if (sity_comp[sity_comp.length - 1] !== sity_user[0].toLowerCase() ) {
+                document.getElementById('s2').innerHTML += '<br>' + 'Введите правильно город'
+            } else {
+                sity_comp = get_next_city(sity_user)
+                writer (sity_comp, sity_user)
+        }}};}
+        }
+    
+window.onload = () => {
+	var sitys = ['Москва', 'Красноярск', 'Архангельск', 'Краснодар', 
+'Ростов-на-Дону', 'Ульяновск', 'Калининград', 'Дмитров', 
+'Владивосток','Краснознаменск', 'Казань', 'Нальчик', 'Кировоград'];
+    start (sitys);
 };
+
