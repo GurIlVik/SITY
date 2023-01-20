@@ -8,12 +8,15 @@ var sitys = ['Москва', 'Красноярск', 'Архангельск', '
 'Ростов-на-Дону', 'Ульяновск', 'Калининград', 'Дмитров', 
 'Владивосток','Краснознаменск', 'Казань', 'Нальчик', 'Кировоград'];
 
-let sity_comp = ''
+let sity_comp = '';
+let list_sity_post = [];
 
 function get_next_city(my_city) {
 	for (var i = 0; i < sitys.length; i++) {
 		if (sitys[i][0].toLowerCase() === my_city[my_city.length - 1]) {
 			let result = sitys[i];
+            list_sity_post.push(result);
+            console.log(list_sity_post);
 			sitys = sitys.filter( item => item !== result);
 			return result;
 		}
@@ -25,6 +28,7 @@ function writer (sity_comp, sity_user) {
     document.getElementById('s1').innerHTML = sity_comp;
     document.getElementById('s3').innerHTML = sity_comp[sity_comp.length -1];
     document.getElementById('s2').innerHTML += '<br>' + sity_user + " - " +  sity_comp;
+    list_sity_post.push(sity_user);
 }
 
 function checkuser (use) {
