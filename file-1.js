@@ -4,12 +4,45 @@
 
 // file:///Z:
 
-var sitys = ['Москва', 'Киров', 'Красноярск', 'Архангельск', 'Краснодар', 
-'Ростов-на-Дону', 'Ульяновск', 'Калининград', 'Дмитров', 
-'Владивосток','Краснознаменск', 'Казань', 'Нальчик', 'Кировоград'];
+var sitys = []
+
+function unloud_html () {
+    let string = document.getElementById("memory").innerText;
+    let result = ''
+    for (let i = 0; i<string.length; i++) {
+        if (string[i] != ','){
+            result += string[i];
+        } else {
+            sitys.push(result);
+            result = '';
+        }
+    }
+}
+
 
 let sity_comp = '';
 let list_sity_post = [];
+
+function nachalo () {
+    unloud_html ();
+    document.getElementById('s3').innerHTML = 'любую';
+    document.getElementById('s1').innerHTML = "ваш ход";
+    document.getElementById('s2').innerHTML = "";
+    }
+
+
+function collect_a_list () {
+    let result = '';
+    let i = 0;
+    for (i = 0; i<list_sity_post.length; i ++) {
+        if ("Ты выиграл!" != list_sity_post[i]) {
+        result += list_sity_post[i]+',';}
+    }
+    document.getElementById("memory").innerHTML = result;
+    list_sity_post = [];
+    sity_comp = '';
+}
+
 
 function global_list () {
     let i;
@@ -37,21 +70,14 @@ function last_letter (word) {
 function check_new_sity(sity_new) {
     let i;
     let chek = 0;
-    console.log(chek);
     let sit_list = global_list ();
-    console.log(sit_list);
     if ('Этот город уже был, введите другой.' != sity_new) {
     for (i = 0; i < sit_list.length; i ++){
-        console.log(sity_new);
-        console.log(sit_list[i]);
         if (sity_new == sit_list[i]) {
-            chek += 1; }}  
-    console.log(chek);      
+            chek += 1; }}   
     if (chek != 1) {
         document.getElementById('s2').innerHTML += '<br>' + "Спасибо, я добавил в свой список новый город!";
-        console.log(sitys);
-    }console.log(list_sity_post);
-    chek = 0;}}
+    }}}
 
 
 function get_next_city(my_city) {
@@ -76,7 +102,26 @@ function writer (sity_comp, sity_user) {
     list_sity_post.push(sity_user);
     list_sity_post.push(sity_comp);
     sitys = sitys.filter(item => item !== sity_user);
-    document.getElementById('a1').innerHTML = ''; // почему не работает innerHTML 
+    document.getElementById('a1').value = ''; // почему не работает innerHTML 
+    if ("Ты выиграл!" == sity_comp) {
+        let blok_finish = document.getElementById('finish');
+        let button_finish = document.createElement("INPUT");
+        button_finish.setAttribute("type", "button", 'id = restart');
+        button_finish.value = "Начать снова";
+        button_finish.style.backgroundColor = '#e7ef10';
+        button_finish.style.width = '24vw';
+        button_finish.style.height = '6vw';
+        button_finish.style.fontSize = '3vw';
+        button_finish.style.color = '#263ec4';
+        button_finish.style.borderRadius = '70%';
+        blok_finish.appendChild(button_finish);
+        button_finish.onclick = function() {
+            sity_comp = '';
+            collect_a_list ();
+            blok_finish.removeChild(button_finish);
+            start ();
+        }
+    }
 }
 
 function checkuser (use) {
@@ -89,14 +134,16 @@ function checkuser (use) {
             return use
         }};  return false}
 
-function start (sitys) {
+function start () {
+    nachalo ();
     b1.onclick = function() {
+        console.log(sitys);
         var sity_user = document.getElementById('a1').value;
         sity_user = checkuser(sity_user);
         check_new_sity(sity_user);
         if (sity_user === false) {
             document.getElementById('s2').innerHTML += '<br>' + 'Введите правильно город, первая буква указана не верно:';
-            document.getElementById('a1').innerHTML = '';
+            document.getElementById('a1').value = '';
         } else {
             if (sity_user == 'Этот город уже был, введите другой.') {
                 document.getElementById('s2').innerHTML += '<br>' + sity_user
@@ -108,18 +155,10 @@ function start (sitys) {
             if (sity_comp[sity_comp.length - 1] !== sity_user[0].toLowerCase() ) {
                 document.getElementById('s2').innerHTML += '<br>' + 'Введите правильно город'
             } else {
-                sity_comp = get_next_city(sity_user)
-                writer (sity_comp, sity_user)
+                sity_comp = get_next_city(sity_user);
+                writer (sity_comp, sity_user);
+               
         }}}};}
         }
     
-window.onload = () => {
-    start (sitys);
-};
-
-
-
-
-
-// постараться вынести список в файл HTML
-// 
+window.onload = () => {start ();}
