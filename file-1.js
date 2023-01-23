@@ -41,6 +41,7 @@ function collect_a_list () {
     document.getElementById("memory").innerHTML = result;
     list_sity_post = [];
     sity_comp = '';
+    sitys = [];
 }
 
 
@@ -137,7 +138,6 @@ function checkuser (use) {
 function start () {
     nachalo ();
     b1.onclick = function() {
-        console.log(sitys);
         var sity_user = document.getElementById('a1').value;
         sity_user = checkuser(sity_user);
         check_new_sity(sity_user);
