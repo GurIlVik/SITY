@@ -7,18 +7,51 @@
 var sitys = []
 
 function unloud_html () {
-    let string = document.getElementById("memory").innerText;
-    let result = ''
-    for (let i = 0; i<string.length; i++) {
-        if (string[i] != ','){
-            result += string[i];
-        } else {
-            sitys.push(result);
-            result = '';
-        }
-    }
-}
+    let link = 'https://github.com/GurIlVik/SITY.git/text.txt';
+    console.log(link);
+    let result = '';
+    let string = document.getElementById("memory");
+    string.download = link.substring((link.lastIndexOf('/') + 1), ling.length);
+    string.href = link;
+    
 
+        // 	console.log('mew');
+        // 	let user = {
+        // 		name: 'John',
+        // 		surname: 'Smith'
+        //     };
+        // 	let tokens = document.getElementsByName('csrfmiddlewaretoken');
+        // 	console.log(tokens[0].value);
+        // 	fetch('/fenster/', {
+        // 		method: 'POST',
+        // 		headers: {
+        // 			'Content-Type': 'application/json',
+        // 			'X-CSRFToken': tokens[0].value,
+        //             'Accept': 'application/json',
+        // 		},
+        // 		body: JSON.stringify({
+        // 			name: 'John',
+        // 			surname: 'Smith'
+        // 		})
+        // 	}).then(response => {
+        // 			console.log(response);
+        // 			return response.json();
+        // 	}).then(result => {
+        // 		console.log(result)
+        // 	});
+        // }
+
+    // let string = document.getElementById("memory").innerText;
+    // let result = ''
+    // for (let i = 0; i<string.length; i++) {
+    //     if (string[i] != ','){
+    //         result += string[i];
+    //     } else {
+    //         sitys.push(result);
+    //         result = '';
+    //     }
+    // }
+}
 
 let sity_comp = '';
 let list_sity_post = [];
